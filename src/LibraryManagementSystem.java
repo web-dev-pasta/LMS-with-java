@@ -1,0 +1,113 @@
+import java.util.*;
+
+public class LibraryManagementSystem {
+    private ArrayList<Book> books;
+    private ArrayList<Member> members;
+    private Scanner scanner;
+    private int MAX_BORROW_LIMIT = 1;
+
+    public LibraryManagementSystem() {
+        books = new ArrayList<>();
+        members = new ArrayList<>();
+        scanner = new Scanner(System.in);
+        booksAndMembers();
+    }
+
+    private void booksAndMembers() {
+        books.add(new Book("1984", "George Orwell", "1234", 1949));
+        books.add(new Book("To Kill a Mockingbird", "Harper Lee", "5678", 1960));
+        members.add(new Member("John Doe", "M001"));
+        members.add(new Member("Jane Smith", "M002"));
+    }
+
+    public void run() {
+    while (true) {
+        try {
+            displayMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    displayAvailableBooks();
+                    break;
+                case 2:
+                    searchBooks();
+                    break;
+                case 3:
+                    borrowBook();
+                    break;
+                case 4:
+                    returnBook();
+                    break;
+                case 5:
+                    addNewBook();
+                    break;
+                case 6:
+                    viewMemberDetails();
+                    break;
+                case 7:
+                    System.out.println("Good bye!");
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+                    continue;
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid choice!");
+            scanner.nextLine();
+        }
+    }}
+    
+    private void displayMenu() {
+        System.out.println("\n=== Library Management System ===");
+        System.out.println("1. Display Available Books");
+        System.out.println("2. Search Books");
+        System.out.println("3. Borrow Book");
+        System.out.println("4. Return Book");
+        System.out.println("5. Add New Book");
+        System.out.println("6. View Member Details");
+        System.out.println("7. Exit");
+        System.out.print("Enter choice: ");
+    }
+
+    private void displayAvailableBooks() {};
+    private void searchBooks() {};
+    private void borrowBook() {};
+    private void returnBook() {};
+    private void addNewBook() {};
+    private void viewMemberDetails() {};
+    public static void main(String[] args) {
+        LibraryManagementSystem library = new LibraryManagementSystem();
+        library.run();
+    }
+}
+
+class Book {
+    private String title;
+    private String author;
+    private String isbn;
+    private int year;
+    private boolean available;
+
+    public Book(String title, String author, String isbn, int year) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.year = year;
+        this.available = true;
+    }
+}
+
+class Member {
+    private String name;
+    private String memberId;
+    private ArrayList<Book> borrowedBooks;
+    private static final int MAX_BORROW_LIMIT = 1;
+
+    public Member(String name, String memberId) {
+        this.name = name;
+        this.memberId = memberId;
+        this.borrowedBooks = new ArrayList<>();
+    }
+}
