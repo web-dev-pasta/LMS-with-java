@@ -147,6 +147,11 @@ public class LibraryManagementSystem {
             System.out.println("Member not found!");
             return;
         }
+        
+        if (member.getBorrowedBooks() == 0) {
+            System.out.println("Member Does not have any borrowed books!");
+            return;
+        }
 
         System.out.print("Enter Book ISBN: ");
         String isbn = scanner.nextLine();
