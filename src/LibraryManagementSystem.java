@@ -84,7 +84,23 @@ public class LibraryManagementSystem {
             System.out.println("Sorry, There is no available at the moment.");
         }
     };
-    private void searchBooks() {};
+    private void searchBooks() {
+        System.out.print("Enter search keyword (title/author): ");
+        String keyword = scanner.nextLine().toLowerCase();
+        
+        System.out.println("\nSearch Results:");
+        boolean found = false;
+        for (Book book : books) {
+            if (book.getTitle().toLowerCase().contains(keyword) || 
+                book.getAuthor().toLowerCase().contains(keyword)) {
+                    found = true;
+                    System.out.println(book);
+            }
+        }
+        if (!found) {
+            System.out.println("No books found matching '" + keyword + "'");
+        }
+    };
     private void borrowBook() {};
     private void returnBook() {};
     private void addNewBook() {};
