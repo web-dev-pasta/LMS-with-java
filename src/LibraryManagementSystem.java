@@ -101,7 +101,43 @@ public class LibraryManagementSystem {
             System.out.println("No books found matching '" + keyword + "'");
         }
     };
-    private void borrowBook() {};
+    private void borrowBook() {
+        System.out.print("Enter Member ID: ");
+        String memberId = scanner.nextLine();
+        Member member = findMember(memberId);
+        
+        if (member == null) {
+            System.out.println("Member not found!");
+            return;
+        }
+        if (member.getBorrowedBooks() >= MAX_BORROW_LIMIT) {
+            System.out.println("Member has reached maximum borrowing limit!");
+            System.out.println("Current borrowed: " + member.getBorrowedBooks());
+            System.out.println();
+            return;
+        }
+
+        System.out.print("Enter Book ISBN: ");
+        String isbn = scanner.nextLine();
+        Book book = findBook(isbn);
+
+        if (book == null) {
+            System.out.println("Book not found!");
+            return;
+        }
+
+        if (!book.isAvailable()) {
+            System.out.println("Book is not available for borrowing!");
+            return;
+        }
+
+        if (member.borrowMemberBook(book)) {
+            book.setAvailable(false);
+            System.out.println("Book borrowed successfully!");
+        } else {
+            System.out.println("Member has reached maximum borrowing limit!");
+        }
+    };
     private void returnBook() {};
     private void addNewBook() {};
     private void viewMemberDetails() {};
