@@ -178,7 +178,18 @@ public class LibraryManagementSystem {
         books.add(new Book(title, author, isbn, year));
         System.out.println("Book added successfully!");
     };
-    private void viewMemberDetails() {};
+    private void viewMemberDetails() {
+        System.out.print("Enter Member ID: ");
+        String memberId = scanner.nextLine();
+        Member member = findMember(memberId);
+        
+        if (member != null) {
+            System.out.println(member);
+            member.displayBorrowedBooks();
+        } else {
+            System.out.println("Member not found!");
+        }
+    };
 
     private Member findMember(String memberId) {
         for (Member member : members) {
