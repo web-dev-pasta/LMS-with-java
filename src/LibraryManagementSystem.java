@@ -123,4 +123,39 @@ class Member {
         this.memberId = memberId;
         this.borrowedBooks = new ArrayList<>();
     }
+
+    public String getMemberId() { return memberId; }
+
+    public boolean borrowMemberBook(Book book) {
+        Boolean result = !!(borrowedBooks.size() < MAX_BORROW_LIMIT);
+        if (borrowedBooks.size() < MAX_BORROW_LIMIT) {
+            borrowedBooks.add(book);
+        }
+        return result;
+    }
+
+    public boolean returnMemberBook(Book book) {
+        return borrowedBooks.remove(book);
+    }
+    
+    public int getBorrowedBooks() {
+        return this.borrowedBooks.size();
+    }
+
+    public void displayBorrowedBooks() {
+        if (borrowedBooks.isEmpty()) {
+            System.out.println("No books borrowed");
+        } else {
+            System.out.println("Borrowed Books:");
+            for (Book book : borrowedBooks) {
+                System.out.println("  - " + book.getTitle());
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Member: %s (ID: %s) - Borrowed: %d/%d books", 
+                            name, memberId, borrowedBooks.size(), MAX_BORROW_LIMIT);
+    }
 }
