@@ -105,6 +105,24 @@ public class LibraryManagementSystem {
     private void returnBook() {};
     private void addNewBook() {};
     private void viewMemberDetails() {};
+
+    private Member findMember(String memberId) {
+        for (Member member : members) {
+            if (member.getMemberId().toLowerCase().equals(memberId)) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    private Book findBook(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
+    }
     public static void main(String[] args) {
         LibraryManagementSystem library = new LibraryManagementSystem();
         library.run();
