@@ -164,7 +164,20 @@ public class LibraryManagementSystem {
             System.out.println("This book was not borrowed by this member!");
         }
     };
-    private void addNewBook() {};
+    private void addNewBook() {
+        System.out.print("Enter title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+        System.out.print("Enter year: ");
+        int year = scanner.nextInt();
+        scanner.nextLine();
+
+        books.add(new Book(title, author, isbn, year));
+        System.out.println("Book added successfully!");
+    };
     private void viewMemberDetails() {};
 
     private Member findMember(String memberId) {
