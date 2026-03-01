@@ -73,15 +73,8 @@ public class LibraryManagementSystem {
 
     private void displayAvailableBooks() {
         System.out.println("\nAvailable Books:");
-        boolean found = false;
         for (Book book : books) {
-            if (book.isAvailable()) {
                 System.out.println(book);
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("Sorry, There is no available at the moment.");
         }
     };
     private void searchBooks() {};
